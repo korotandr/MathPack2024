@@ -1,6 +1,6 @@
 import pathlib
 import typing as tp
-import numpy as np
+import random as rm
 
 T = tp.TypeVar("T")
 
@@ -118,8 +118,18 @@ def check_solution(solution: tp.List[tp.List[str]]) -> bool:
 
 def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
     """Генерация судоку заполненного на N элементов"""
-    
-    pass
+    grid =[]
+    for i in range(9):
+        grid.append(['.','.','.','.','.','.','.','.','.'])
+    grid = solve(grid)
+    count = 81 - N
+    while count > 0:
+        i = rm.randrange(-1, 9)
+        j = rm.randrange(-1, 9)
+        if grid [i][j] != '.':
+            grid[i][j] = '.'
+            count -= 1
+    return grid
 
 if __name__ == "__main__":
     for fname in ["puzzle1.txt", "puzzle2.txt", "puzzle3.txt", "puzzlemax.txt"]:
