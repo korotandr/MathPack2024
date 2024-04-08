@@ -1,0 +1,8 @@
+https://selectel.ru/blog/http-request/ - про http запросы
+
+https://vc.ru/u/1389654-machine-learning/592815-vvedenie-v-pydantic-moshchnaya-proverka-dannyh-dlya-vashih-rest-api-2023 - про проверку данных с помощью библиотеки pydantic
+
+https://python.ivan-shamaev.ru/python-api-tutorial-get-post-auth-http-requests-examples/ - примеры API запросов в python с помощью библиотеки requests
+
+https://api.openweathermap.org/data/2.5/weather?lat=40,7143&lon=-74,006&appid=8537d9ef6386cb97156fd47d832f479c&units=metric - API для погоды
+
