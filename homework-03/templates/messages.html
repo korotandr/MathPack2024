@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta http-equiv="refresh" content="5">
+  </head>
+  <body>
+    <h1>Сообщения:</h1>
+    <ol>
+        {% for messages in context.messages %}
+        <h4>{{ messages.name }} написал в {{ messages.time }}:</h4>
+        <i>{{ messages.text }}</i>
+        {% endfor %}
+    </ol>
+  <img src="static/chat.jpg">
+
+  </body>
+
+</html>

@@ -11,7 +11,14 @@ while True:
             print("Список команд:\n/help\n/weather\n/anon\n/deanon")
 
         elif text == "weather":
-            pass
+            url = 'https://api.openweathermap.org/data/2.5/weather'
+            params = {'lat':55.751244, 'lon':37.618423, 'appid': '8537d9ef6386cb97156fd47d832f479c', 'units': 'metric'}
+            response = requests.get(url, params=params)
+            data = response.json()
+            city = str(data['name'])
+            temp = str(data['main']['temp'])
+            feels_like = str(data['main']['feels_like'])
+            print("Температура в " + city + " " + temp + " градусов, ощущается как " + feels_like + " градусов")
 
         elif text == "anon":
             name = "Аноним"

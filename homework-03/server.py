@@ -14,13 +14,6 @@ app = Flask(__name__)
 db = []
 uniqueUsers = set()
 
-for i in range(3):
-    db.append({
-        'name': 'Anton',
-        'time': 12343,
-        'text': 'text01923097'
-    })
-
 @app.route("/")
 def hello():
     return "Hello, World!"
@@ -48,39 +41,32 @@ def send_message():
     if name not in uniqueUsers:
         uniqueUsers.add(name)
 
+    t = time.time()
+    dt = datetime.fromtimestamp(t)
     message = {
         'text': text,
         'name': name,
-        'time': time.time()
+        'time': dt.strftime('%Y-%m-%d %H:%M:%S')
     }
     db.append(message)
     return {'ok': True}
 
 @app.route("/messages")
 def get_messages():
-    try:
-        after = float(flask.request.args['after'])
-    except:
-        abort(400)
-    db_after = []
-    for message in db:
-        if message['time'] > after:
-            db_after.append(message)
-    return {'messages': db_after}
+    context = {}
+    context['messages'] = db
+    return flask.render_template('messages.html', context = context)
 
 @app.route("/status")
 def print_status():
     t = time.time()
     dt = datetime.fromtimestamp(t)
-    return {
+    info = {
 
        "messagesCount": len(db),
        "date": dt.strftime('%Y-%m-%d %H:%M:%S'),
        "uniqueUsers": len(uniqueUsers)
     }
-
-@app.route('/index')
-def lionel(): 
-    return flask.render_template('index.html')
+    return flask.render_template('status.html', info = info)
 
 app.run()
